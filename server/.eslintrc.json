@@ -24,6 +24,7 @@
 		"indent": [ "error", "tab", { "SwitchCase": 1 } ],
 		"no-console": "off",
 		"import/extensions": "off",
-		"object-curly-newline": "off"
+		"object-curly-newline": "off",
+		"newline-per-chained-call": "off"
     }
 }
