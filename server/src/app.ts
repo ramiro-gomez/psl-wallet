@@ -1,24 +1,27 @@
 /* eslint-disable import/first */
-import * as dotenv from 'dotenv';
+require('dotenv').config();
 
-dotenv.config();
 import express from 'express';
+import 'express-async-errors';
+import pool from './db';
 import activitiesRouter from './routes/activities';
-import pool from './db/pool';
+import errorHandlerMiddleware from './middleware/error-handler';
 
 const app = express();
-const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
 app.use('/api/v1/activities', activitiesRouter);
 
+app.use(errorHandlerMiddleware);
+
+const port = process.env.PORT || 5000;
 (async () => {
 	try {
 		await pool.getConnection();
-		console.log('DB is Connected');
+		console.log('DB connected');
 		app.listen(port, () => console.log(`Server listening on port ${port}`));
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 })();
