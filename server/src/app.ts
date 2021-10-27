@@ -3,6 +3,10 @@ require('dotenv').config();
 
 import express from 'express';
 import 'express-async-errors';
+import helmet from 'helmet';
+import xss from 'xss-clean';
+import cors from 'cors';
+import rateLimiter from 'express-rate-limit';
 import pool from './db';
 import activitiesRouter from './routes/activities';
 import authenticationRouter from './routes/auth';
@@ -11,7 +15,15 @@ import authenticationMiddleware from './middleware/authentication';
 
 const app = express();
 
+app.set('trust proxy', 1);
+app.use(rateLimiter({
+	windowMs: 5 * 60 * 1000, // 5 minutes
+	max: 100, // limit each IP to 100 requests per windowMs
+}));
 app.use(express.json());
+app.use(helmet());
+app.use(cors());
+app.use(xss());
 
 app.use('/api/v1/auth', authenticationRouter);
 app.use('/api/v1/activities', authenticationMiddleware, activitiesRouter);

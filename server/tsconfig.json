@@ -25,5 +25,6 @@
 	},
 	"files": [
 		"src/express.d.ts",
+		"src/xss-clean.d.ts"
 	],
 }
