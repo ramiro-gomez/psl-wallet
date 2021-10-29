@@ -1,16 +1,11 @@
 import { FC } from 'react';
-import 'materialize-css';
 import { Button, TextInput } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import NavBar from '../components/NavBar';
 
 const Login: FC = () => (
 	<div className="custom-container center">
-		<nav>
-			<Link className="logo logo--center" to="/">
-				<img className="logo__img" src={logo} alt="logo" />
-			</Link>
-		</nav>
+		<NavBar centered />
 		<h2 className="regular-title">
 			Welcome!
 			<br />

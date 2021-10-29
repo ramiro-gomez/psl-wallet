@@ -42,21 +42,41 @@ a {
 .custom-container {
 	margin: 0 $side-space;
 }
+
+// NavBar
 .navbar {
 	padding-top: 1.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-.logo {
-	&__img {
+	&__logo {
 		width: 11rem;
 	}
-	&--center {
-		.logo__img {
+	&--centered {
+		justify-content: center;
+		.navbar__logo {
 			margin-top: 1.5rem;
 			width: 13rem;
 		}
+	}
+}
+
+// Activity table
+.activity-table {
+	margin: 1rem 0;
+	max-height: 45vh;
+	overflow: scroll;
+	&__head {
+		position: sticky;
+		top: 0;
+		color: white;
+		background-color: $primary-color;
+	}
+	&__th {
+		border-radius: 0;
+	}
+	&--full {
+		max-height: 68vh;
 	}
 }
 
@@ -83,18 +103,12 @@ a {
 		font-weight: 600;
 	}
 }
-.c-table {
-	margin: 1rem 0;
-	max-height: 45vh;
-	overflow: scroll;
-	&__head {
-		position: sticky;
-		top: 0;
-		color: white;
-		background-color: $primary-color;
-	}
-	&__th {
-		border-radius: 0;
+
+// Activities
+.activity-filter {
+	margin-top: 1rem;
+	&__title {
+		font-size: 1.5rem;
 	}
 }
 
@@ -127,12 +141,12 @@ a {
 }
 
 @media #{$medium-and-up} {
-	.logo {
-		&__img {
+	.navbar {
+		&__logo {
 			width: 15rem;
 		}
-		&--center {
-			.logo__img {
+		&--centered {
+			.navbar__logo {
 				width: 17.5rem;
 			}
 		}
