@@ -4,27 +4,34 @@ import { Button, TextInput } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
-const Register: FC = () => (
+const Login: FC = () => (
 	<div className="center">
 		<Link className="logo logo--center" to="/">
-			<img className="logo__img responsive-img" src={logo} alt="logo" />
+			<img className="logo__img" src={logo} alt="logo" />
 		</Link>
-		<h2 className="regular-title">Register</h2>
+		<h2 className="regular-title">
+			Welcome!
+			<br />
+			Please log in to start using the app
+		</h2>
 		<form className="form">
 			<div className="form__error-box red lighten-1 white-text">
 				<p>Error message</p>
 			</div>
-			<TextInput s={12} label="Name" />
 			<TextInput s={12} label="Email" />
 			<TextInput s={12} password label="Password" />
-			<TextInput s={12} password label="Repeat your password" />
 			<div className="center">
-				<Button className="form__btn" large>
-					Register
+				<Button className="form__button" large>
+					Log in
 				</Button>
 			</div>
+			<p className="form__bottom-text">
+				Don&apos;t have an account?
+				{' '}
+				<Link to="/register">Click here to register</Link>
+			</p>
 		</form>
 	</div>
 );
 
-export default Register;
+export default Login;
