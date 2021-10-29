@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const Register: FC = () => (
-	<div className="center">
-		<Link className="logo logo--center" to="/">
-			<img className="logo__img responsive-img" src={logo} alt="logo" />
-		</Link>
+	<div className="custom-container center">
+		<nav>
+			<Link className="logo logo--center" to="/">
+				<img className="logo__img responsive-img" src={logo} alt="logo" />
+			</Link>
+		</nav>
 		<h2 className="regular-title">Register</h2>
 		<form className="form">
 			<div className="form__error-box red lighten-1 white-text">
@@ -19,7 +21,7 @@ const Register: FC = () => (
 			<TextInput s={12} password label="Password" />
 			<TextInput s={12} password label="Repeat your password" />
 			<div className="center">
-				<Button className="form__btn" large>
+				<Button className="form__btn">
 					Register
 				</Button>
 			</div>

@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const Login: FC = () => (
-	<div className="center">
-		<Link className="logo logo--center" to="/">
-			<img className="logo__img" src={logo} alt="logo" />
-		</Link>
+	<div className="custom-container center">
+		<nav>
+			<Link className="logo logo--center" to="/">
+				<img className="logo__img" src={logo} alt="logo" />
+			</Link>
+		</nav>
 		<h2 className="regular-title">
 			Welcome!
 			<br />
@@ -21,7 +23,7 @@ const Login: FC = () => (
 			<TextInput s={12} label="Email" />
 			<TextInput s={12} password label="Password" />
 			<div className="center">
-				<Button className="form__button" large>
+				<Button className="form__button">
 					Log in
 				</Button>
 			</div>

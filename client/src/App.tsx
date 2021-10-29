@@ -4,10 +4,14 @@ import {
 import 'materialize-css';
 import Register from './components/Register';
 import Login from './components/Login';
+import Home from './components/Home';
 
 const App = () => (
 	<HashRouter>
 		<Switch>
+			<Route path="/" exact>
+				<Home />
+			</Route>
 			<Route path="/register" exact>
 				<Register />
 			</Route>

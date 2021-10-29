@@ -3,14 +3,26 @@ $primary-color: #01a89e;
 $fm-primary: "Barlow";
 $fm-secondary: "Barlow Semi Condensed";
 
+$side-space: 2rem;
+
 // Override materialize
 $input-border-color: $primary-color;
+$navbar-height: auto;
+$navbar-height-mobile: auto;
+$navbar-line-height: inherit;
+$navbar-line-height-mobile: inherit;
+$navbar-font-size: auto;
+$navbar-brand-font-size: auto;
 
 @import "~materialize-css/sass/materialize.scss";
 
 body {
 	font-family: $fm-secondary, sans-serif;
 	color: $primary-color;
+}
+nav {
+	background-color: transparent;
+	box-shadow: none;
 }
 h1,
 h2,
@@ -21,30 +33,80 @@ h6 {
 	margin: 0;
 	font-family: $fm-primary;
 }
-
-// Custom classes
-.primary-text {
+a {
 	color: $primary-color;
 }
 
+// Custom classes
+// General
+.custom-container {
+	margin: 0 $side-space;
+}
+.navbar {
+	padding-top: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 .logo {
+	&__img {
+		width: 11rem;
+	}
 	&--center {
-		margin-left: 0;
 		.logo__img {
 			margin-top: 1.5rem;
-			width: 17.5rem;
+			width: 13rem;
 		}
 	}
 }
 
+// Home
+.balance-box {
+	&__money {
+		font-size: 2.5rem;
+		font-family: $fm-primary;
+		font-weight: 600;
+		margin-bottom: 0;
+	}
+	&__title {
+		font-size: 1.5rem;
+		font-weight: 500;
+	}
+}
+.resume {
+	margin-top: 1.5rem;
+	&__title {
+		font-size: 1.5rem;
+	}
+	&__link {
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+}
+.c-table {
+	margin: 1rem 0;
+	max-height: 45vh;
+	overflow: scroll;
+	&__head {
+		position: sticky;
+		top: 0;
+		color: white;
+		background-color: $primary-color;
+	}
+	&__th {
+		border-radius: 0;
+	}
+}
+
+// Login and Register
 .regular-title {
 	margin-top: 3rem;
+	margin-bottom: 1.5rem;
 	font-weight: 500;
-	font-size: 2.25rem;
+	font-size: 1.5rem;
 }
 .form {
 	margin: auto;
-	padding: 1.5rem;
 	max-width: 500px;
 	&__error-box {
 		padding: 0.25rem;
@@ -61,5 +123,21 @@ h6 {
 			color: $primary-color;
 			font-weight: 600;
 		}
+	}
+}
+
+@media #{$medium-and-up} {
+	.logo {
+		&__img {
+			width: 15rem;
+		}
+		&--center {
+			.logo__img {
+				width: 17.5rem;
+			}
+		}
+	}
+	.regular-title {
+		font-size: 2.25rem;
 	}
 }
