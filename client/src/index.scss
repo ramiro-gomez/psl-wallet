@@ -1,0 +1,52 @@
+$primary-color: #01a89e;
+
+$fm-primary: "Barlow";
+$fm-secondary: "Barlow Semi Condensed";
+
+// Override materialize
+$input-border-color: $primary-color;
+
+@import "~materialize-css/sass/materialize.scss";
+
+body {
+	font-family: $fm-secondary, sans-serif;
+	color: $primary-color;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	font-family: $fm-primary;
+}
+
+// Custom classes
+.primary-text {
+	color: $primary-color;
+}
+
+.logo {
+	margin-top: 1.5rem;
+	width: 280px;
+}
+.form-size {
+	margin: auto;
+	padding: 1.5rem;
+	max-width: 500px;
+}
+.form-title {
+	margin-top: 3rem;
+	font-weight: 500;
+	font-size: 36px;
+}
+.form-error-box {
+	padding: 4px;
+	> * {
+		margin: 0;
+	}
+}
+.form-button {
+	margin-top: 1rem;
+}
