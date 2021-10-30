@@ -5,7 +5,7 @@ import ActivityTable from '../components/ActivityTable';
 import NavBar from '../components/NavBar';
 
 const Home: FC = () => (
-	<div className="custom-container">
+	<>
 		<div className="center">
 			<NavBar />
 			<section className="balance-box">
@@ -19,7 +19,7 @@ const Home: FC = () => (
 				<Button small>Add a new activity</Button>
 			</section>
 		</div>
-	</div>
+	</>
 );
 
 export default Home;

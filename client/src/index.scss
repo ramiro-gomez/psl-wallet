@@ -40,12 +40,11 @@ a {
 // Custom classes
 // General
 .custom-container {
-	margin: 0 $side-space;
+	margin: 1.5rem $side-space;
 }
 
 // NavBar
 .navbar {
-	padding-top: 1.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

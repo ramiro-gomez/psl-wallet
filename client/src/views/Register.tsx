@@ -3,7 +3,7 @@ import { Button, TextInput } from 'react-materialize';
 import NavBar from '../components/NavBar';
 
 const Register: FC = () => (
-	<div className="custom-container center">
+	<div className="center">
 		<NavBar centered />
 		<h2 className="regular-title">Register</h2>
 		<form className="form">

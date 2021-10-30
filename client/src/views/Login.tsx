@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 
 const Login: FC = () => (
-	<div className="custom-container center">
+	<div className="center">
 		<NavBar centered />
 		<h2 className="regular-title">
 			Welcome!
