@@ -11,9 +11,9 @@ CREATE TABLE activity (
   id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   concept VARCHAR(50) NOT NULL,
   type ENUM('Income', 'Outflow') NOT NULL,
-  amount INT NOT NULL,
+  amount INT UNSIGNED NOT NULL,
   category ENUM('Food', 'Transport', 'Services', 'Clothing', 'Other') NOT NULL,
   date TIMESTAMP NOT NULL,
-  created_by VARCHAR(320) NOT NULL,
-  FOREIGN KEY (created_by) REFERENCES user(email) ON DELETE CASCADE
+  createdBy VARCHAR(320) NOT NULL,
+  FOREIGN KEY (createdBy) REFERENCES user(email) ON DELETE CASCADE
 );

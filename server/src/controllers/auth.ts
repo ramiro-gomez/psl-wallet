@@ -13,17 +13,20 @@ if (!jwtSecret) throw new Error('JWT_SECRET not found');
 if (!jwtLifeTime) throw new Error('JWT_LIFETIME not found');
 
 export const register = async (req: Request, res: Response) => {
-	const { error, value } = registerSchema.validate(req.body);
+	const { error, value: { email, name, password } } = registerSchema.validate(req.body);
 	if (error) throw new ApiError(StatusCodes.BAD_REQUEST, error.message);
 	try {
-		const hashedPassword = await bcrypt.hash(value.password, 10);
+		const hashedPassword = await bcrypt.hash(password, 10);
 		const newUser = {
-			email: value.email,
-			name: value.name,
+			email,
+			name,
 			password: hashedPassword,
 		};
 		await pool.query('INSERT INTO user SET ?', [newUser]);
-		const token = jwt.sign({ email: value.email }, jwtSecret, { expiresIn: jwtLifeTime });
+		const token = jwt.sign({
+			email,
+			name,
+		}, jwtSecret, { expiresIn: jwtLifeTime });
 		res.status(StatusCodes.CREATED).send({ token });
 	} catch (err: any) {
 		if (err.code === 'ER_DUP_ENTRY') throw new ApiError(StatusCodes.BAD_REQUEST, 'This email is already registered');
@@ -40,6 +43,9 @@ export const login = async (req: Request, res: Response) => {
 	const isPasswordCorrect = await bcrypt.compare(value.password, user.password);
 	if (!isPasswordCorrect) throw new ApiError(StatusCodes.UNAUTHORIZED, 'Wrong password');
 
-	const token = jwt.sign({ email: user.email }, jwtSecret, { expiresIn: jwtLifeTime });
+	const token = jwt.sign({
+		email: user.email,
+		name: user.name,
+	}, jwtSecret, { expiresIn: jwtLifeTime });
 	res.status(StatusCodes.OK).json({ token });
 };

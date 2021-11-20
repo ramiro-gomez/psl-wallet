@@ -8,7 +8,7 @@ export const registerSchema = Joi.object({
 	}),
 	email: emailSchema,
 	password: Joi.string().min(8).max(50).required(),
-	repeat_password: Joi.string().valid(Joi.ref('password')).required().messages({
+	repeatPassword: Joi.string().valid(Joi.ref('password')).required().messages({
 		'any.only': 'Passwords must match',
 	}),
 });

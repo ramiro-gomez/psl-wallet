@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const conceptSchema = Joi.string().trim();
-const typeSchema = Joi.string().valid('Inflow', 'Outflow');
+const typeSchema = Joi.string().valid('Income', 'Outflow');
 const amountSchema = Joi.number().greater(0);
 const categorySchema = Joi.string().valid('Food', 'Transport', 'Services', 'Clothing', 'Other');
 const dateSchema = Joi.date().iso().min('1970-01-01 00:00:00').max('now');
