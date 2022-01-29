@@ -7,8 +7,9 @@ import { useAppSelector } from '../store';
 
 const Home: FC = () => {
 	const { user } = useAppSelector((state) => state.auth);
-	const { balance } = useAppSelector((state) => state.activities);
+	const { activityList, balance } = useAppSelector((state) => state.activities);
 	if (!user) throw new Error('user.accessToken doesn\'t exist on this component');
+	const filteredActivities = activityList.slice(0, 10);
 
 	return (
 		<>
@@ -31,7 +32,7 @@ const Home: FC = () => {
 				<section className="resume">
 					<h3 className="resume__title">Last 10 activities</h3>
 					<Link className="resume__link" to="/activities">Click here to view all</Link>
-					<ActivityTable />
+					<ActivityTable activityList={filteredActivities} />
 					<Link to="/create">
 						<Button small>Add a new activity</Button>
 					</Link>

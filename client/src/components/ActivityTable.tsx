@@ -3,20 +3,19 @@ import { Button, Icon, Table } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store';
 import { deleteActivity } from '../store/reducers/activitiesReducer';
+import { Activity } from '../types/Activity';
 
 interface Props {
 	fullSize?: boolean,
-	activityLimit?: number,
+	activityList: Activity[]
 }
-const defaultProps: Props = {
+const defaultProps: Partial<Props> = {
 	fullSize: false,
-	activityLimit: undefined,
 };
 
-const ActivityTable: FC<Props> = ({ fullSize, activityLimit }) => {
+const ActivityTable: FC<Props> = ({ fullSize, activityList }) => {
 	const { user } = useAppSelector((state) => state.auth);
 	if (!user) throw new Error('user.accessToken doesn\'t exist on this component');
-	const { activityList } = useAppSelector((state) => state.activities);
 	const dispatch = useAppDispatch();
 
 	return (
@@ -34,7 +33,7 @@ const ActivityTable: FC<Props> = ({ fullSize, activityLimit }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{(activityLimit ? activityList.slice(0, activityLimit) : activityList).map(({
+					{activityList.map(({
 						id, concept, category, type, date, amount,
 					}) => (
 						<tr key={id}>
