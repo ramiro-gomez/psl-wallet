@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { lsToken } from '../helpers/jwt';
+import activitiesReducer from './reducers/activitiesReducer';
 import authReducer from './reducers/authReducer';
 
 const store = configureStore({
 	reducer: {
 		auth: authReducer,
+		activities: activitiesReducer,
 	},
 });
 

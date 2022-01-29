@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router';
 import { useAppSelector } from '../store';
 import { UserRoles } from '../types/Auth';
@@ -8,18 +8,17 @@ interface Props extends RouteProps {
 	redirectPath: string,
 }
 
-const AppRoute: React.FC<Props> = ({
+const AppRoute: FC<Props> = ({
 	component, path, onlyFor, redirectPath,
 }) => {
 	const { user } = useAppSelector((state) => state.auth);
 
-	switch (onlyFor) {
-		case UserRoles.USER:
-			return user ? <Route path={path} exact component={component} /> : <Redirect to={redirectPath} />;
-		case UserRoles.ANONYM:
-			return !user ? <Route path={path} exact component={component} /> : <Redirect to={redirectPath} />;
-		default: return <Route path={path} exact component={component} />;
-	}
+	const RoleConditions = {
+		[UserRoles.USER]: Boolean(user),
+		[UserRoles.ANONYM]: !user,
+	};
+
+	return RoleConditions[onlyFor] ? <Route path={path} exact component={component} /> : <Redirect to={redirectPath} />;
 };
 
 export default AppRoute;

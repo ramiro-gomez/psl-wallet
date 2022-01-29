@@ -1,29 +1,52 @@
 import { HashRouter, Switch } from 'react-router-dom';
 import 'materialize-css';
-import { Provider } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { ProgressBar } from 'react-materialize';
 import Home from './views/Home';
 import Register from './views/Register';
 import Login from './views/Login';
 import Activities from './views/Activities';
-import Editor from './views/Editor';
+import Edit from './views/Edit';
 import { UserRoles } from './types/Auth';
 import AppRoute from './routes/AppRoute';
-import store from './store';
+import { useAppDispatch, useAppSelector } from './store';
+import Create from './views/Create';
+import { getActivities } from './store/reducers/activitiesReducer';
 
-const App = () => (
-	<Provider store={store}>
+const App = () => {
+	const { user } = useAppSelector((state) => state.auth);
+	const dispatch = useAppDispatch();
+	const [isLoadingActivities, setIsLoadingActivities] = useState(true);
+
+	useEffect(() => {
+		if (user) {
+			(async () => {
+				const { type } = await dispatch(getActivities({ token: user.accessToken }));
+				if (type.includes('fulfilled')) {
+					setIsLoadingActivities(false);
+				}
+			})();
+		}
+	}, [user]);
+
+	return isLoadingActivities ? (
+		<div className="loader-wrapper container valign-wrapper">
+			<ProgressBar />
+		</div>
+	) : (
 		<div className="custom-container">
 			<HashRouter>
 				<Switch>
 					<AppRoute path="/" exact component={Home} onlyFor={UserRoles.USER} redirectPath="/login" />
 					<AppRoute path="/activities" exact component={Activities} onlyFor={UserRoles.USER} redirectPath="/login" />
-					<AppRoute path="/editor" exact component={Editor} onlyFor={UserRoles.USER} redirectPath="/login" />
+					<AppRoute path="/create" exact component={Create} onlyFor={UserRoles.USER} redirectPath="/login" />
+					<AppRoute path="/edit/:id" exact component={Edit} onlyFor={UserRoles.USER} redirectPath="/login" />
 					<AppRoute path="/login" exact component={Login} onlyFor={UserRoles.ANONYM} redirectPath="/" />
 					<AppRoute path="/register" exact component={Register} onlyFor={UserRoles.ANONYM} redirectPath="/" />
 				</Switch>
 			</HashRouter>
 		</div>
-	</Provider>
-);
+	);
+};
 
 export default App;

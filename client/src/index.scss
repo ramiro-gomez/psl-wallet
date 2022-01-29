@@ -42,6 +42,10 @@ a {
 .custom-container {
 	margin: 1.5rem $side-space;
 }
+.loader-wrapper {
+	position: absolute;
+	inset: 0;
+}
 
 // NavBar
 .navbar {
@@ -103,6 +107,14 @@ a {
 	&__link {
 		font-size: 1.25rem;
 		font-weight: 600;
+	}
+}
+
+// Editor
+.editor {
+	&__message {
+		font-weight: 500;
+		margin-top: 9rem;
 	}
 }
 

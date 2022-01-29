@@ -18,7 +18,7 @@ const Activities: FC = () => (
 				<option value="outflow">Outflow</option>
 			</Select>
 		</div>
-		<ActivityTable full />
+		<ActivityTable fullSize />
 	</>
 );
 
