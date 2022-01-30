@@ -16,11 +16,12 @@ import { getActivities } from './store/reducers/activitiesReducer';
 const App = () => {
 	const { user } = useAppSelector((state) => state.auth);
 	const dispatch = useAppDispatch();
-	const [isLoadingActivities, setIsLoadingActivities] = useState(true);
+	const [isLoadingActivities, setIsLoadingActivities] = useState(false);
 
 	useEffect(() => {
 		if (user) {
 			(async () => {
+				setIsLoadingActivities(true);
 				const { type } = await dispatch(getActivities({ token: user.accessToken }));
 				if (type.includes('fulfilled')) {
 					setIsLoadingActivities(false);
