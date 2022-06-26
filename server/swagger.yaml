@@ -1,0 +1,245 @@
+openapi: 3.0.0
+info:
+  title: PSL Wallet
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://pslwallet.ddns.net/api/v1
+  variables: {}
+paths:
+  /activities:
+    get:
+      tags:
+      - Activity
+      summary: getActivities
+      operationId: getActivities
+      parameters:
+      - name: limit
+        in: query
+        description: ''
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - Activity
+      summary: addActivity
+      operationId: addActivity
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addActivityRequest'
+            example:
+              concept: Test
+              type: Outflow
+              amount: 500
+              category: Food
+              date: 2021-09-19T20:47:00.000Z
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /activities/{id}:
+    patch:
+      tags:
+      - Activity
+      summary: editActivity
+      operationId: editActivity
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+            type: integer
+            minimum: 1
+            example: 1
+        description: The activity id
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/editActivityRequest'
+            example:
+              amount: 555
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - Activity
+      summary: deleteActivity
+      operationId: deleteActivity
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+            type: integer
+            minimum: 1
+            example: 1
+        description: The activity id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginrequest'
+            example:
+              email: abcd@abc.aaa
+              password: '12345678'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerrequest'
+            example:
+              name: Test
+              email: abcd@abc.aaa
+              password: '12345678'
+              repeatPassword: '12345678'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    addActivityRequest:
+      title: addActivityRequest
+      required:
+      - concept
+      - type
+      - amount
+      - category
+      - date
+      type: object
+      properties:
+        concept:
+          type: string
+        type:
+          type: string
+        amount:
+          type: integer
+          format: int32
+        category:
+          type: string
+        date:
+          type: string
+      example:
+        concept: Test
+        type: Outflow
+        amount: 500
+        category: Food
+        date: 2021-09-19T20:47:00.000Z
+    editActivityRequest:
+      title: editActivityRequest
+      required:
+      - amount
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int32
+      example:
+        amount: 555
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: abcd@abc.aaa
+        password: '12345678'
+    registerrequest:
+      title: registerrequest
+      required:
+      - name
+      - email
+      - password
+      - repeatPassword
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        repeatPassword:
+          type: string
+      example:
+        name: Test
+        email: abcd@abc.aaa
+        password: '12345678'
+        repeatPassword: '12345678'
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Activity
+- name: Auth
