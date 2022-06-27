@@ -1,6 +1,6 @@
 # PSL Wallet
 ### Administrador de presupuesto personal
-### 🚀 [Pulsa aquí para ver una demo de la web](http://pslwallet.ddns.net/)
+### 🚀 [Para ver una demo de la web pulsa aquí](http://pslwallet.ddns.net/) [o aquí](http://ec2-18-230-87-228.sa-east-1.compute.amazonaws.com/)
 ¡Instalada en AWS EC2 y RDS!
 ![](./docs/pslwallet.png)
 ### :book: [Documentación de la API](http://pslwallet.ddns.net/api-docs/)

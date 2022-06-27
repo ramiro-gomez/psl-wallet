@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(helmet({
 	contentSecurityPolicy: {
 		directives: {
-			'default-src': ["'self'", "'unsafe-inline'", 'https:', 'data:'],
+			'default-src': ["'self'", "'unsafe-inline'", 'https:', 'http:', 'data:'],
 		},
 	},
 }));
